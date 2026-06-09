@@ -1,0 +1,5 @@
+﻿.vs
+OpenGL-Lighting/OpenGL-Lighting.vcxproj.user
+OpenGL-Lighting/x64
+*.pdb
+*.exe

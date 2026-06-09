@@ -9,8 +9,10 @@
  Author      :   Angelo Joseph Arawiran Bohol
  Mail        :   angelo.bohol@mds.ac.nz
  ***********************************************************************/
-#include "InputHandler.h"
+
 #include <iostream>
+
+#include "InputHandler.h"
 
  // -- GLFW Static Callbacks -- //
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -28,7 +30,7 @@ InputHandler& InputHandler::getInstance() {
 }
 
 void InputHandler::initialise(GLFWwindow* window) {
-    // Pointer tot he GLFW Window
+    // Pointer to the GLFW Window
     this->m_window = window;
 
     // Register the static callbacks with GLFW
@@ -38,13 +40,13 @@ void InputHandler::initialise(GLFWwindow* window) {
 
 int InputHandler::getAxis(int positiveKey, int negativeKey) const {
     // Tri-Bool Pattern
-    int pos = (glfwGetKey(this->m_window, positiveKey) == GLFW_PRESS) ? 1 : 0;
-    int neg = (glfwGetKey(this->m_window, negativeKey) == GLFW_PRESS) ? 1 : 0;
+    int positive = (glfwGetKey(this->m_window, positiveKey) == GLFW_PRESS) ? 1 : 0;
+    int negative = (glfwGetKey(this->m_window, negativeKey) == GLFW_PRESS) ? 1 : 0;
 
     // Both held or neither held = 0
     // Only Positive = 1
     // Only Negative = -1
-    return pos - neg;
+    return positive - negative;
 }
 
 bool InputHandler::isKeyHeld(int glfwKey) const {
@@ -91,7 +93,7 @@ void InputHandler::onMouseButton(int button, int action) {
 }
 
 void InputHandler::flush() {
-    // Clear the single press states at end of frame
+    // Clear the single press states at end of the frame
     // This ensures that wasKeyPressed() and wasMouseButtonPressed() returns true for exactly ONE frame
     this->m_keyPressedThisFrame.clear();
     this->m_mouseButtonPressedThisFrame.clear();

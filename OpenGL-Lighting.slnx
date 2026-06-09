@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="OpenGL-Lighting/OpenGL-Lighting.vcxproj" Id="f9f370dd-d5b3-40f8-b040-d4753b6d6a26" />
+</Solution>
