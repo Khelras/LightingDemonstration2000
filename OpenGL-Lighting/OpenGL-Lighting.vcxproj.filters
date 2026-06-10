@@ -86,6 +86,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
+    <ClCompile Include="CameraFree.cpp">
+      <Filter>Source Files\Scene\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -117,6 +120,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Source Files\Scene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraFree.h">
+      <Filter>Source Files\Scene\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

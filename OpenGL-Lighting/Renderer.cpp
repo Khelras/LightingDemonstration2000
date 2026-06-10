@@ -33,7 +33,7 @@ void Renderer::initialise(const std::string& vertPath, const std::string& fragPa
     glFrontFace(GL_CCW);
 }
 
-void Renderer::render(const Scene& scene, Camera& camera) {
+void Renderer::render(const Scene& scene, CameraFree& camera) {
     /*
         Rendering Steps (occurs per frame):
             1. Clear the back buffer

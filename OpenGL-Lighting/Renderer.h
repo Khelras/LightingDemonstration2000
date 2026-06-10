@@ -12,7 +12,7 @@
 
 #pragma once
 #include "Scene.h"
-#include "Camera.h"
+#include "CameraFree.h"
 
 /// <summary>
 ///		Handles the rendering of the world objects to the screen.
@@ -57,7 +57,7 @@ public:
 	/// 
 	/// <param name="scene">Reference to the scene to render.</param>
 	/// <param name="camera">Reference to the camera for rendering.</param>
-	void render(const Scene& scene, Camera& camera);
+	void render(const Scene& scene, CameraFree& camera);
 
 	/// <summary>
 	///		Toggle the wireframe rendering of the 3D model.

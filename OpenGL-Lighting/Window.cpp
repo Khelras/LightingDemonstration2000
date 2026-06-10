@@ -20,7 +20,7 @@ Window::Window(unsigned int width, unsigned int height) {
 	this->m_windowHeight = height;
 	this->m_cursorVisible = true;
 
-	this->m_camera = std::make_unique<Camera>(static_cast<float>(width), static_cast<float>(height));
+	this->m_camera = std::make_unique<CameraFree>(static_cast<float>(width), static_cast<float>(height));
 	this->m_scene = std::make_unique<Scene>();
 	this->m_renderer = std::make_unique<Renderer>();
 	// -- //
@@ -135,8 +135,8 @@ void Window::pollEvents() {
 	// Poll for and process events
 	glfwPollEvents();
 
-	// Handle Movement
-	this->handleMovement();
+	// Handle Free Camera Movement
+	this->m_camera->handleFreeCameraMovement(this->m_deltaTime);
 
 	// Reference to the Input Handler
 	InputHandler& input = InputHandler::getInstance();
@@ -164,34 +164,6 @@ void Window::render() {
 
 	// Swap the Front and Back Buffers
 	glfwSwapBuffers(this->m_window);
-}
-
-void Window::handleMovement() {
-	// Reference to the Input Handler
-	InputHandler& input = InputHandler::getInstance();
-
-	// Direction Vectors in Relation the Camera
-	glm::vec3 cameraPosition = this->m_camera->getCameraPosition();
-	glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f); // World Upwards Direction (+Y)
-	glm::vec3 forward = glm::normalize(-cameraPosition); // Camera Always Targets the World Origin
-	glm::vec3 right = glm::normalize(glm::cross(forward, worldUp)); // Perpendicular to the Forward Vector
-
-	// Tri-Bool Axis for WASD + QE Movement
-	int horizontal = input.getAxis(GLFW_KEY_D, GLFW_KEY_A); // A and D
-	int depth = input.getAxis(GLFW_KEY_W, GLFW_KEY_S); // W and S
-	int vertical = input.getAxis(GLFW_KEY_Q, GLFW_KEY_E); // Q and E
-
-	// Construct the Delta Movement Vector
-	glm::vec3 movement = glm::vec3(0.0f);
-	movement += static_cast<float>(horizontal) * right; // Right and Left
-	movement += static_cast<float>(depth) * forward; // Forward and Backward
-	movement += static_cast<float>(vertical) * worldUp; // Up and Down
-
-	// Normalize so Diagonal Movement is NOT Faster
-	if (glm::length(movement) > 0.0f) movement = glm::normalize(movement);
-
-	// Apply the Movement
-	//this->m_camera->setCameraPosition(cameraPosition + movement * 5.0f * this->m_deltaTime);
 }
 
 void Window::toggleCursorVisibility() {

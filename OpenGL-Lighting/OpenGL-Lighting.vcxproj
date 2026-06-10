@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraFree.cpp" />
     <ClCompile Include="CubeMapTexture.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -173,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraFree.h" />
     <ClInclude Include="CubeMapTexture.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Mesh.h" />

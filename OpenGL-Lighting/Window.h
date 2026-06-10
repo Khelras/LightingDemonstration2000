@@ -24,7 +24,7 @@ private:
 	unsigned int m_windowHeight;
 	bool m_cursorVisible;
 
-	std::unique_ptr<Camera> m_camera;
+	std::unique_ptr<CameraFree> m_camera;
 	std::unique_ptr<Scene> m_scene;
 	std::unique_ptr<Renderer> m_renderer;
 	// -- //
@@ -102,11 +102,6 @@ private:
 	//==================================================
 	// HELPER METHODS
 	//==================================================
-
-	/// <summary>
-	///		Handle and process the movement inputs.
-	/// </summary>
-	void handleMovement();
 
 	/// <summary>
 	///		Toggle the cursor visibility.
