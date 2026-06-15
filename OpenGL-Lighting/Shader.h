@@ -17,6 +17,9 @@
 
 #include "ShaderLoader.h"
 
+/// <summary>
+///		Wraps the OpenGL shader program and provide utility functions to easily set uniform variables.
+/// </summary>
 class Shader {
 private:
 	// -- Shader Properties -- //
