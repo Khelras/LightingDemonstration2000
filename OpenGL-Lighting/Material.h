@@ -11,15 +11,19 @@
  ***********************************************************************/
 
 #pragma once
+#include <memory>
 
 #include "Shader.h"
 #include "Texture2D.h"
 
+/// <summary>
+///		Material class that encapsulates a Shader with Textures.
+/// </summary>
 class Material {
 private:
 	// -- Material Properties -- //
-	Shader* m_shader;
-	Texture2D* m_texture;
+	std::unique_ptr<Shader> m_shader;
+	std::unique_ptr<Texture2D> m_texture;
 	// -- //
 
 public:
@@ -28,17 +32,13 @@ public:
 	//==================================================
 
 	/// <summary>
-	///		Default Constructor.
-	/// </summary>
-	Material();
-
-	/// <summary>
 	///		Constructor.
 	/// </summary>
 	/// 
-	/// <param name="shader">Pointer to the Shader.</param>
-	/// <param name="texture">Pointer to the Texture2D.</param>
-	Material(Shader* shader, Texture2D* texture);
+	/// <param name="vertexPath">File path to the vertex shader.</param>
+	/// <param name="fragmentPath">File path to the fragment shader.</param>
+	/// <param name="texturePath">File path to the texture.</param>
+	Material(const char* vertexPath, const char* fragmentPath, const std::string& texturePath);
 
 	/// <summary>
 	///		Destructor.

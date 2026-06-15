@@ -12,14 +12,10 @@
 
 #include "Material.h"
 
-Material::Material() {
-	this->m_shader = nullptr;
-	this->m_texture = nullptr;
-}
-
-Material::Material(Shader* shader, Texture2D* texture) {
-	this->m_shader = shader;
-	this->m_texture = texture;
+Material::Material(const char* vertexPath, const char* fragmentPath, const std::string& texturePath) {
+	this->m_shader = std::make_unique<Shader>(vertexPath, fragmentPath);
+	this->m_texture = std::make_unique<Texture2D>();
+	this->m_texture->loadFromFile(texturePath);
 }
 
 Material::~Material() {
