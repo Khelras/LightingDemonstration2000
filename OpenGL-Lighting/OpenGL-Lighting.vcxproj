@@ -168,7 +168,6 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
-    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -181,15 +180,12 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ShaderLoader.h" />
-    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Model.frag" />
     <None Include="Resources\Shaders\Model.vert" />
-    <None Include="Resources\Shaders\Skybox.frag" />
-    <None Include="Resources\Shaders\Skybox.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

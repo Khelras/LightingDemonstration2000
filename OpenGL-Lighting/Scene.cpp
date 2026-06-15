@@ -42,28 +42,6 @@ void Scene::initialise(const std::string& modelPath) {
 	this->m_rotation = glm::vec3(0.0f);
 	this->m_scale = glm::vec3(1.0f);
 
-	// Six Skybox Face Images in the Order: +X, -X, +Y, -Y, +Z, -Z
-	this->m_skybox = std::make_unique<Skybox>(std::vector<std::string>{
-		"Resources/Textures/Skybox/Right.png",		// +X
-		"Resources/Textures/Skybox/Left.png",		// -X
-		"Resources/Textures/Skybox/Top.png",		// +Y
-		"Resources/Textures/Skybox/Bottom.png",		// -Y
-		"Resources/Textures/Skybox/Back.png",		// +Z
-		"Resources/Textures/Skybox/Front.png"		// -Z
-	});
-
-	// Initialise the Skybox
-	this->m_skybox->initialise();
-
-	// Reflection Map Texture
-	this->m_reflectionMap = std::make_unique<Texture2D>();
-
-	// Check if the Reflection Map Texture Loaded Succesfully
-	if (this->m_reflectionMap->loadFromFile("Resources/Textures/ReflectionMap.png") == false) {
-		std::cout << "[Scene] Failed to load reflection map texture: 'Resources/Textures/ReflectionMap.png'" << std::endl;
-		exit(1);
-	};
-
 	// Scene Initialised
 	std::cout << "[Scene] Initialised successfully. Model: '" << modelPath << std::endl;
 }
@@ -85,14 +63,6 @@ Mesh* Scene::getModel() const {
 
 Texture2D* Scene::getTexture() const {
 	return this->m_texture.get();
-}
-
-Skybox* Scene::getSkybox() const {
-	return this->m_skybox.get();
-}
-
-Texture2D* Scene::getReflectionMap() const {
-	return this->m_reflectionMap.get();
 }
 
 glm::vec3 Scene::getPosition() const {

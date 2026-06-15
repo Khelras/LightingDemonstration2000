@@ -15,7 +15,6 @@
 
 #include "Mesh.h"
 #include "Texture2D.h"
-#include "Skybox.h"
 
 /// <summary>
 ///     Scene class representing a self-contained state of the application.
@@ -32,11 +31,6 @@ private:
 	glm::vec3 m_position = glm::vec3(0.0f);
 	glm::vec3 m_rotation = glm::vec3(0.0f);
 	glm::vec3 m_scale = glm::vec3(1.0f);
-	// -- //
-
-	// -- Skybox Properties -- //
-	std::unique_ptr<Skybox> m_skybox;
-	std::unique_ptr<Texture2D> m_reflectionMap;
 	// -- //
 
 	// -- UI Properties -- //
@@ -91,11 +85,6 @@ public:
 	/// <param name="delta">3D delta movement vector.</param>
 	void moveObject(glm::vec3 delta);
 
-	/// <summary>
-	///		Cycle through the textures for the 3D object.
-	/// </summary>
-	void cycleTexture();
-
 	//==================================================
 	// GETTER METHODS
 	//==================================================
@@ -117,24 +106,6 @@ public:
 	///		Texture for the 3D object.
 	/// </returns>
 	Texture2D* getTexture() const;
-
-	/// <summary>
-	///		Get the Skybox.
-	/// </summary>
-	/// 
-	/// <returns>
-	///		Skybox.
-	/// </returns>
-	Skybox* getSkybox() const;
-
-	/// <summary>
-	///		Get the reflection map texture.
-	/// </summary>
-	/// 
-	/// <returns>
-	///		Reflection map texture.
-	/// </returns>
-	Texture2D* getReflectionMap() const;
 	
 	/// <summary>
 	///		Get the world position of the 3D model.

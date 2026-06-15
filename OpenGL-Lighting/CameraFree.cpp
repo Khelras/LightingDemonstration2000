@@ -16,7 +16,7 @@
 
 CameraFree::CameraFree(float windowWidth, float windowHeight) : Camera(windowWidth, windowHeight) {
 	// Default Free Camera Properties
-	this->m_movementSpeed = 5.0f;
+	this->m_movementSpeed = 7.0f;
 	this->m_mouseSensitivity = 0.1f;
 	this->m_yaw = 0.0f;
 	this->m_pitch = 0.0f;

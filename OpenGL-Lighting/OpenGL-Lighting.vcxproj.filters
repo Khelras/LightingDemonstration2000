@@ -39,17 +39,14 @@
     <Filter Include="Source Files\Graphics\Mesh">
       <UniqueIdentifier>{c3cc345d-a5f7-468c-93f2-fb1e7a798120}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics\Skybox">
-      <UniqueIdentifier>{6f78cf01-b5ff-4b37-b15b-41ce196de3ad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Graphics\Textures">
       <UniqueIdentifier>{8b8462bd-3a67-48e7-b047-3a3dd2b26232}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics\Shader Loader">
-      <UniqueIdentifier>{ea5f4b61-f11c-4129-86dd-4e013c59af24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Graphics\Renderer">
       <UniqueIdentifier>{c6641b39-f255-4851-b16f-c66444090b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Shader">
+      <UniqueIdentifier>{ea5f4b61-f11c-4129-86dd-4e013c59af24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +69,7 @@
       <Filter>Source Files\Graphics\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="ShaderLoader.cpp">
-      <Filter>Source Files\Graphics\Shader Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Skybox.cpp">
-      <Filter>Source Files\Graphics\Skybox</Filter>
+      <Filter>Source Files\Graphics\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Core\Window</Filter>
@@ -110,10 +104,7 @@
       <Filter>Source Files\Graphics\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ShaderLoader.h">
-      <Filter>Source Files\Graphics\Shader Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.h">
-      <Filter>Source Files\Graphics\Skybox</Filter>
+      <Filter>Source Files\Graphics\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Source Files\Core\Window</Filter>
@@ -130,12 +121,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Resources\Shaders\Model.vert">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Resources\Shaders\Skybox.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Resources\Shaders\Skybox.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

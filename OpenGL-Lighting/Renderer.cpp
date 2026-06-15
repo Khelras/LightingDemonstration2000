@@ -66,14 +66,6 @@ void Renderer::render(const Scene& scene, CameraFree& camera) {
     // Bind the Scene's 3D Object Texture to Slot 0
     scene.getTexture()->bind(0);
     glUniform1i(glGetUniformLocation(this->m_program, "texture0"), 0);
-
-    // Bind the Reflection Map Texture to Slot 1
-    scene.getReflectionMap()->bind(1);
-    glUniform1i(glGetUniformLocation(this->m_program, "reflectionMap"), 1);
-
-    // Bind the Skybox Cube Map Texture to Slot 2
-    scene.getSkybox()->getCubeMap()->bind(2);
-    glUniform1i(glGetUniformLocation(this->m_program, "skyboxTexture"), 2);
     // -- // 
 
 
@@ -84,14 +76,9 @@ void Renderer::render(const Scene& scene, CameraFree& camera) {
 
     // Unbind the Textures
     scene.getTexture()->unbind();
-    scene.getReflectionMap()->unbind();
-    scene.getSkybox()->getCubeMap()->unbind();
 
     // Unbind the Program
     glUseProgram(0);
-
-    // Render the Skybox
-    scene.getSkybox()->draw(view, projection);
     // -- //
 }
 
