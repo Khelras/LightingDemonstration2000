@@ -14,13 +14,17 @@
 
 #include "InputHandler.h"
 
- // -- GLFW Static Callbacks -- //
+// -- GLFW Static Callbacks -- //
 static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     InputHandler::getInstance().onKey(key, action);
 }
 
 static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     InputHandler::getInstance().onMouseButton(button, action);
+};
+
+static void cursorPositionCallback(GLFWwindow*, double xPos, double yPos) {
+    InputHandler::getInstance().onCursorMove(static_cast<float>(xPos), static_cast<float>(yPos));
 }
 // -- //
 
@@ -36,6 +40,12 @@ void InputHandler::initialise(GLFWwindow* window) {
     // Register the static callbacks with GLFW
     glfwSetKeyCallback(window, keyCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
+
+    // Enable the 'Disabled Cursor' Mode to hide the Cursour and Capture the Mouse Movement
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+    // Tell GLFW to call your function whenever the mouse moves
+    glfwSetCursorPosCallback(window, cursorPositionCallback);
 }
 
 int InputHandler::getAxis(int positiveKey, int negativeKey) const {
@@ -49,6 +59,11 @@ int InputHandler::getAxis(int positiveKey, int negativeKey) const {
     return positive - negative;
 }
 
+void InputHandler::getCursorPosition(float& x, float& y) const {
+    x = this->m_cursorPositionX;
+    y = this->m_cursorPositionY;
+}
+
 bool InputHandler::isKeyHeld(int glfwKey) const {
     return glfwGetKey(this->m_window, glfwKey) == GLFW_PRESS;
 }
@@ -59,23 +74,17 @@ bool InputHandler::wasKeyPressed(int glfwKey) const {
     return (it != this->m_keyPressedThisFrame.end()) && it->second;
 }
 
-glm::vec2 InputHandler::getCursorPos() const {
-    // Get the Mouse Position
-    double dxPos, dyPos;
-    glfwGetCursorPos(this->m_window, &dxPos, &dyPos);
-
-    // Convert to Float
-    float fxPos = static_cast<float>(dxPos);
-    float fyPos = static_cast<float>(dyPos);
-
-    // Return the 2D float vector for the mouse position
-    return glm::vec2(fxPos, fyPos);
-}
-
 bool InputHandler::wasMouseButtonPressed(int glfwButton) const {
     // Only true for the single frame the button was first pressed
     auto it = this->m_mouseButtonPressedThisFrame.find(glfwButton);
     return (it != this->m_mouseButtonPressedThisFrame.end()) && it->second;
+}
+
+void InputHandler::flush() {
+    // Clear the single press states at end of the frame
+    // This ensures that wasKeyPressed() and wasMouseButtonPressed() returns true for exactly ONE frame
+    this->m_keyPressedThisFrame.clear();
+    this->m_mouseButtonPressedThisFrame.clear();
 }
 
 void InputHandler::onKey(int key, int action) {
@@ -92,9 +101,7 @@ void InputHandler::onMouseButton(int button, int action) {
     }
 }
 
-void InputHandler::flush() {
-    // Clear the single press states at end of the frame
-    // This ensures that wasKeyPressed() and wasMouseButtonPressed() returns true for exactly ONE frame
-    this->m_keyPressedThisFrame.clear();
-    this->m_mouseButtonPressedThisFrame.clear();
+void InputHandler::onCursorMove(float xPosition, float yPosition) {
+    this->m_cursorPositionX = xPosition;
+	this->m_cursorPositionY = yPosition;
 }

@@ -27,6 +27,10 @@ private:
     // Stores keys that were pressed on THIS frame only (cleared by flush())
     std::unordered_map<int, bool> m_keyPressedThisFrame;
     std::unordered_map<int, bool> m_mouseButtonPressedThisFrame;
+
+    // Cursor Position Tracking
+    float m_cursorPositionX = 0.0f;
+    float m_cursorPositionY = 0.0f;
     // -- //
 
     //==================================================
@@ -71,7 +75,8 @@ public:
     ///     Initialise the Input Handler.
     ///     Call once after GLFW window creation to register the GLFW callback.
     /// </summary>
-    /// <param name="window"></param>
+    /// 
+    /// <param name="window">A pointer to the GLFW window.</param>
     void initialise(GLFWwindow* window);
 
     //==================================================
@@ -95,7 +100,13 @@ public:
     /// </returns>
     int getAxis(int positiveKey, int negativeKey) const;
 
-    // Returns true every frame the key is held down
+    /// <summary>
+    ///     Get the current position of the cursor.
+    /// </summary>
+    /// 
+    /// <param name="x">Reference to save the x-position to.</param>
+    /// <param name="y">Reference to save the y-position to.</param>
+    void getCursorPosition(float& x, float& y) const;
 
     /// <summary>
     ///     Per-frame key held down queries.
@@ -123,15 +134,6 @@ public:
     bool wasKeyPressed(int glfwKey) const;
 
     /// <summary>
-    ///     Get the position of the cursor in relation to the window coordinates.
-    /// </summary>
-    /// 
-    /// <returns>
-    ///     2D floating-point vector representing the position of the mouse.
-    /// </returns>
-    glm::vec2 getCursorPos() const;
-
-    /// <summary>
     ///     Single mouse button press queries.
     ///     Only checks the first frame the key was pressed.
     ///     Best used for toggles or actions.
@@ -143,6 +145,16 @@ public:
     ///     True on the first frame the mouse button was pressed; false otherwise.
     /// /// </returns>
     bool wasMouseButtonPressed(int glfwButton) const;
+
+    /// <summary>
+    ///     Clears the single press hash maps.
+    ///     Call at the end of the frame to ensure single press checks are valid.
+    /// </summary>
+    void flush();
+
+    //==================================================
+    // HELPER METHODS
+    //==================================================
 
     /// <summary>
     ///     Called internally by the GLFW callback.
@@ -157,10 +169,11 @@ public:
     ///     DO NOT CALL MANUALLY.
     /// </summary>
     void onMouseButton(int button, int action);
-    
+
     /// <summary>
-    ///     Clears the single press hash maps.
-    ///     Call at the end of the frame to ensure single press checks are valid.
+    ///     Called internally by the GLFW callback.
+    ///     Calculate and store the movement offset of the Cursor for this frame.
+    ///     DO NOT CALL MANUALLY.
     /// </summary>
-    void flush();
+    void onCursorMove(float xPosition, float yPosition);
 };

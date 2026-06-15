@@ -22,6 +22,14 @@ private:
 	// -- Free Camera Properties -- //
 	float m_movementSpeed;
 	float m_mouseSensitivity;
+	float m_yaw;
+	float m_pitch;
+	// -- //
+
+	// -- Cursor Movement Properties -- //
+	bool m_firstMouse;
+	float m_cursorLastX;
+	float m_cursorLastY;
 	// -- //
 
 public:
@@ -45,7 +53,7 @@ public:
 	//==================================================
 	// PRIMARY CAMERA FREE METHODS
 	//==================================================
-	
+
 	/// <summary>
 	///		Handle the Free Camera Movement.
 	/// </summary>
