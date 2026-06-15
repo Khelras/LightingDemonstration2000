@@ -52,6 +52,24 @@ public:
 	/// <summary>
 	///		Sets the material properties as uniforms in the shader.
 	/// </summary>
-	void apply() const ;
+	void apply() const;
+
+	/// <summary>
+	///		Get the Shader.
+	/// </summary>
+	/// 
+	/// <returns>
+	///		The Shader of this Material as a raw pointer.
+	/// </returns>
+	Shader* getShader() const;
+
+	/// <summary>
+	///		Get the Texture.
+	/// </summary>
+	/// 
+	/// <returns>
+	///		The Texture of this Material as a raw pointer.
+	/// </returns>
+	Texture2D* getTexture() const;
 };
 

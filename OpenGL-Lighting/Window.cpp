@@ -95,12 +95,12 @@ bool Window::initialize(int major, int minor) {
 	InputHandler::getInstance().initialise(this->m_window);
 
 	// Initialise the Scene and the Renderer
-	this->m_scene->initialise("Resources/Models/SM_Env_Statue_01.obj");
-	this->m_scene->initialiseUI(static_cast<float>(this->m_windowWidth), static_cast<float>(this->m_windowHeight));
-	this->m_scene->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
-	this->m_scene->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
-	this->m_scene->setScale(glm::vec3(2.0f));
-	this->m_renderer->initialise("Resources/Shaders/Model.vert", "Resources/Shaders/Model.frag");
+	this->m_scene->initialise();
+	//this->m_scene->initialiseUI(static_cast<float>(this->m_windowWidth), static_cast<float>(this->m_windowHeight));
+	//this->m_scene->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
+	//this->m_scene->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
+	//this->m_scene->setScale(glm::vec3(2.0f));
+	this->m_renderer->initialise();
 	std::cout << std::endl;
 
 	// Initialisation was a success, returning true

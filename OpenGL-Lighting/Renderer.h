@@ -20,8 +20,7 @@
 class Renderer {
 private:
 	// -- Renderer Properties -- //
-	GLuint m_program;
-	bool m_wireframeActive;
+	
 	// -- //
 
 public:
@@ -46,10 +45,7 @@ public:
 	/// <summary>
 	///		Initialise the Renderer.
 	/// </summary>
-	/// 
-	/// <param name="vertPath">File path to the vertex shader file.</param>
-	/// <param name="fragPath">File path to the fragment shader file.</param>
-	void initialise(const std::string& vertPath, const std::string& fragPath);
+	void initialise();
 
 	/// <summary>
 	///		Render a given scene and a given camera.
@@ -57,11 +53,6 @@ public:
 	/// 
 	/// <param name="scene">Reference to the scene to render.</param>
 	/// <param name="camera">Reference to the camera for rendering.</param>
-	void render(const Scene& scene, CameraFree& camera);
-
-	/// <summary>
-	///		Toggle the wireframe rendering of the 3D model.
-	/// </summary>
-	void toggleWireframe();
+	void render(Scene& scene, CameraFree& camera);
 };
 

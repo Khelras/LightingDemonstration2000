@@ -15,7 +15,12 @@
 Material::Material(const char* vertexPath, const char* fragmentPath, const std::string& texturePath) {
 	this->m_shader = std::make_unique<Shader>(vertexPath, fragmentPath);
 	this->m_texture = std::make_unique<Texture2D>();
-	this->m_texture->loadFromFile(texturePath);
+	if (this->m_texture->loadFromFile(texturePath) == false) {
+		// Texture 1 Failed to Load
+		std::cout << "[Scene] Failed to load texture: '" << texturePath << "'";
+		std::cout << std::endl;
+		exit(1);
+	}
 }
 
 Material::~Material() {
@@ -35,4 +40,12 @@ void Material::apply() const {
 		this->m_texture->bind(GL_TEXTURE0);
 		this->m_shader->setInt("texture0", 0);
 	}
+}
+
+Shader* Material::getShader() const {
+	return this->m_shader.get();
+}
+
+Texture2D* Material::getTexture() const {
+	return this->m_texture.get();
 }

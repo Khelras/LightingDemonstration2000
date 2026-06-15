@@ -48,6 +48,12 @@
     <Filter Include="Source Files\Graphics\Shader">
       <UniqueIdentifier>{ea5f4b61-f11c-4129-86dd-4e013c59af24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics\Material">
+      <UniqueIdentifier>{0cb2edc3-2967-4f41-b586-af55696ca564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Entity">
+      <UniqueIdentifier>{a5e95ad1-3fbd-41a6-aab1-eefc16bd9ed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -83,6 +89,12 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Graphics\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Graphics\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Scene\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -114,6 +126,12 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Source Files\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Source Files\Graphics\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files\Scene\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
