@@ -52,6 +52,10 @@ void CameraFree::handleFreeCameraMovement(float deltaTime) {
 	this->m_yaw += offsetX * this->m_mouseSensitivity;
 	this->m_pitch += offsetY * this->m_mouseSensitivity;
 
+	// Clamp the Pitch to prevent the Camera from Flipping
+	if (this->m_pitch > 89.0f) this->m_pitch = 89.0f;
+	if (this->m_pitch < -89.0f) this->m_pitch = -89.0f;
+
 	// Update the Look Direction
 	this->m_lookDirection.x = cos(glm::radians(this->m_yaw)) * cos(glm::radians(this->m_pitch));
 	this->m_lookDirection.y = sin(glm::radians(this->m_pitch));
