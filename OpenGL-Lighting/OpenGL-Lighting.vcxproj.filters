@@ -53,9 +53,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Scene\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="CubeMapTexture.cpp">
-      <Filter>Source Files\Graphics\Textures</Filter>
-    </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files\Graphics\Textures</Filter>
     </ClCompile>
@@ -83,13 +80,13 @@
     <ClCompile Include="CameraFree.cpp">
       <Filter>Source Files\Scene\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\Graphics\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
       <Filter>Source Files\Scene\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeMapTexture.h">
-      <Filter>Source Files\Graphics\Textures</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
       <Filter>Source Files\Graphics\Textures</Filter>
@@ -114,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="CameraFree.h">
       <Filter>Source Files\Scene\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source Files\Graphics\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

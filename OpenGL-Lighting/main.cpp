@@ -10,7 +10,6 @@
  Mail        :   angelo.bohol@mds.ac.nz
  ***********************************************************************/
 
-
 #include "Window.h"
 
 int main() {
