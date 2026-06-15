@@ -31,6 +31,9 @@ private:
     // Cursor Position Tracking
     float m_cursorPositionX = 0.0f;
     float m_cursorPositionY = 0.0f;
+
+	// Scroll Offset Tracking
+	float m_scrollOffsetY = 0.0f;
     // -- //
 
     //==================================================
@@ -109,6 +112,16 @@ public:
     void getCursorPosition(float& x, float& y) const;
 
     /// <summary>
+    ///     Get the scroll y-offset on this frame.
+    /// </summary>
+    /// 
+    /// <returns>
+	///     The scroll y-offset on this frame.
+    ///     Positive for scroll up, negative for scroll down.
+    /// </returns>
+    float getScrollOffsetY() const;
+
+    /// <summary>
     ///     Per-frame key held down queries.
     ///     Check if the key is being held down per frame.
     /// </summary>
@@ -176,4 +189,11 @@ public:
     ///     DO NOT CALL MANUALLY.
     /// </summary>
     void onCursorMove(float xPosition, float yPosition);
+
+    /// <summary>
+    ///     Called internally by the GLFW callback.
+    ///     Calculate and store the scroll y-offset.
+    ///     DO NOT CALL MANUALLY.
+    /// </summary>
+    void onScroll(float yOffset);
 };

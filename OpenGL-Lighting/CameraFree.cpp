@@ -62,6 +62,27 @@ void CameraFree::handleFreeCameraMovement(float deltaTime) {
 	this->m_cursorLastY = cursorY;
 	// -- //
 
+	// -- Scroll FOV Movement -- // 
+	float scrollY = input.getScrollOffsetY();
+	const float minFOV = 10.0f;
+	const float maxFOV = 100.0f;
+
+	// Increase FOV and Zoom IN when Scrolling Up
+	if (scrollY > 0.0f) {
+		this->m_perspectiveFOV -= 1.0f; // Decrease FOV to Zoom In
+		if (this->m_perspectiveFOV < minFOV) {
+			this->m_perspectiveFOV = minFOV; // Clamp FOV to Minimum Value
+		}
+	}
+	// Increase the FOV and Zoom OUT when Scrolling Down
+	else if (scrollY < 0.0f) {
+		this->m_perspectiveFOV += 1.0f; // Increase FOV to Zoom Out
+		if (this->m_perspectiveFOV > maxFOV) {
+			this->m_perspectiveFOV = maxFOV; // Clamp FOV to Maximum Value
+		}
+	}
+	// -- // 
+
 	// -- Keyboard Movement -- //
 	// Direction Vectors in Relation the Camera
 	glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f); // World Upwards Direction (+Y)

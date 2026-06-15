@@ -26,6 +26,10 @@ static void mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 static void cursorPositionCallback(GLFWwindow*, double xPos, double yPos) {
     InputHandler::getInstance().onCursorMove(static_cast<float>(xPos), static_cast<float>(yPos));
 }
+
+static void scrollCallback(GLFWwindow* window, double xOffset, double yOffset) {
+	InputHandler::getInstance().onScroll(static_cast<float>(yOffset));
+}
 // -- //
 
 InputHandler& InputHandler::getInstance() {
@@ -37,15 +41,14 @@ void InputHandler::initialise(GLFWwindow* window) {
     // Pointer to the GLFW Window
     this->m_window = window;
 
-    // Register the static callbacks with GLFW
-    glfwSetKeyCallback(window, keyCallback);
-    glfwSetMouseButtonCallback(window, mouseButtonCallback);
-
     // Enable the 'Disabled Cursor' Mode to hide the Cursour and Capture the Mouse Movement
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    // Tell GLFW to call your function whenever the mouse moves
+    // Register the static callbacks with GLFW
+    glfwSetKeyCallback(window, keyCallback);
+    glfwSetMouseButtonCallback(window, mouseButtonCallback);
     glfwSetCursorPosCallback(window, cursorPositionCallback);
+	glfwSetScrollCallback(window, scrollCallback);
 }
 
 int InputHandler::getAxis(int positiveKey, int negativeKey) const {
@@ -62,6 +65,10 @@ int InputHandler::getAxis(int positiveKey, int negativeKey) const {
 void InputHandler::getCursorPosition(float& x, float& y) const {
     x = this->m_cursorPositionX;
     y = this->m_cursorPositionY;
+}
+
+float InputHandler::getScrollOffsetY() const {
+    return this->m_scrollOffsetY;
 }
 
 bool InputHandler::isKeyHeld(int glfwKey) const {
@@ -81,10 +88,13 @@ bool InputHandler::wasMouseButtonPressed(int glfwButton) const {
 }
 
 void InputHandler::flush() {
-    // Clear the single press states at end of the frame
+    // Clear the single press states at end of the Frame
     // This ensures that wasKeyPressed() and wasMouseButtonPressed() returns true for exactly ONE frame
     this->m_keyPressedThisFrame.clear();
     this->m_mouseButtonPressedThisFrame.clear();
+    
+    // Reset the Scroll Y-Offset at the end of the Frame
+    this->m_scrollOffsetY = 0.0f;
 }
 
 void InputHandler::onKey(int key, int action) {
@@ -104,4 +114,8 @@ void InputHandler::onMouseButton(int button, int action) {
 void InputHandler::onCursorMove(float xPosition, float yPosition) {
     this->m_cursorPositionX = xPosition;
 	this->m_cursorPositionY = yPosition;
+}
+
+void InputHandler::onScroll(float yOffset) {
+    this->m_scrollOffsetY = yOffset;
 }

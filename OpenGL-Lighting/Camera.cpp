@@ -19,6 +19,7 @@ Camera::Camera(float windowWidth, float windowHeight) {
 	// -- //
 
 	// -- Default Camera View Properties -- //
+	this->m_perspectiveFOV = 45.0f;
 	this->m_position = glm::vec3(0.0f, 0.0f, 3.0f);
 	this->m_lookDirection = glm::vec3(0.0f, 0.0f, -1.0f);
 	this->m_upDireciton = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -37,9 +38,9 @@ glm::mat4 Camera::getCameraOrtho() {
 	return glm::ortho(0.0f, this->m_windowWidth, this->m_windowHeight, 0.0f, -1.0f, 1.0f);
 }
 
-glm::mat4 Camera::getCameraPerspec(float fov) {
+glm::mat4 Camera::getCameraPerspec() {
 	float aspectRatio = this->m_windowWidth / this->m_windowHeight;
-	return glm::perspective(glm::radians(fov), aspectRatio, 0.1f, 500.0f);
+	return glm::perspective(glm::radians(this->m_perspectiveFOV), aspectRatio, 0.1f, 500.0f);
 }
 
 glm::vec3 Camera::getCameraPosition() const {

@@ -54,7 +54,7 @@ void Renderer::render(const Scene& scene, CameraFree& camera) {
     // MVP (Model, View, Projection) Matrices and Camera Position
     glm::mat4 model = scene.getModelMatrix();
     glm::mat4 view = camera.getCameraView();
-    glm::mat4 projection = camera.getCameraPerspec(45.0f);
+    glm::mat4 projection = camera.getCameraPerspec();
     glm::vec3 cameraPosition = camera.getCameraPosition();
 
     // Send the MVP Matrices and the Camera Position to the Shader Program via Uniforms

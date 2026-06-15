@@ -25,6 +25,7 @@ protected:
 	// -- //
 
 	// -- Camera View Properties -- //
+	float m_perspectiveFOV;
 	glm::vec3 m_position;
 	glm::vec3 m_lookDirection;
 	glm::vec3 m_upDireciton;
@@ -74,12 +75,10 @@ public:
 	///		Gets a perspective projection matrix of the Camera.
 	/// </summary>
 	/// 
-	/// <param name="fov">Field of View (as degrees). Defaulted to 45 degrees.</param>
-	/// 
 	/// <returns>
 	///		4x4 matrix of the perspective projection of the Camera.
 	/// </returns>
-	virtual glm::mat4 getCameraPerspec(float fov = 45.0f);
+	virtual glm::mat4 getCameraPerspec();
 
 	//==================================================
 	// GETTER METHODS
