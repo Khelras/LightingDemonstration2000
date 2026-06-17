@@ -16,7 +16,7 @@
 
 CameraFree::CameraFree(float windowWidth, float windowHeight) : Camera(windowWidth, windowHeight) {
 	// Default Free Camera Properties
-	this->m_movementSpeed = 7.0f;
+	this->m_movementSpeed = static_cast<float>(MIN_MOVEMENT_SPEED);
 	this->m_mouseSensitivity = 0.1f;
 	this->m_yaw = 0.0f;
 	this->m_pitch = 0.0f;
@@ -106,6 +106,10 @@ void CameraFree::handleFreeCameraMovement(float deltaTime) {
 
 	// Normalize so Diagonal Movement is NOT Faster
 	if (glm::length(movement) > 0.0f) movement = glm::normalize(movement);
+
+	// Shift for Faster Speed
+	if (input.isKeyHeld(GLFW_KEY_LEFT_SHIFT)) this->m_movementSpeed = static_cast<float>(MAX_MOVEMENT_SPEED);
+	else this->m_movementSpeed = static_cast<float>(MIN_MOVEMENT_SPEED);
 
 	// Apply the Movement
 	this->m_position += movement * this->m_movementSpeed * deltaTime;
