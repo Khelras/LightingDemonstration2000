@@ -77,8 +77,7 @@ out vec4 finalColor;
 
 // -- Functions -- // 
 // Point Light Calculation
-vec3 calculatePointLight(int index, vec3 norm, vec3 fragPos, vec3 reverseViewDir)
-{
+vec3 calculatePointLight(int index, vec3 norm, vec3 fragPos, vec3 reverseViewDir) {
     // Point Light to Calculate
     PointLight light = pointLights[index];
 
@@ -107,8 +106,7 @@ vec3 calculatePointLight(int index, vec3 norm, vec3 fragPos, vec3 reverseViewDir
 }
 
 // Directional Light Calculation
-vec3 calculateDirectionalLight(vec3 norm, vec3 reverseViewDir)
-{
+vec3 calculateDirectionalLight(vec3 norm, vec3 reverseViewDir) {
     // Direction from the Surface to the Light
     vec3 lightDir = normalize(-dirLight.direction);
 
@@ -125,8 +123,7 @@ vec3 calculateDirectionalLight(vec3 norm, vec3 reverseViewDir)
 }
 
 // Spot Light Calculation
-vec3 calculateSpotLight(vec3 norm, vec3 fragPos, vec3 reverseViewDir)
-{
+vec3 calculateSpotLight(vec3 norm, vec3 fragPos, vec3 reverseViewDir) {
     // Direction from the Fragment to the Spot Light source
     vec3 lightDir = normalize(spotLight.position - fragPos);
 
@@ -159,8 +156,7 @@ vec3 calculateSpotLight(vec3 norm, vec3 fragPos, vec3 reverseViewDir)
 
 
 // -- Main -- //
-void main()
-{
+void main() {
     vec3 normal = normalize(fragNormal);
     vec3 reverseViewDir = normalize(cameraPosition - fragWorldPosition); // Direction from the Fragment to Camera View
 

@@ -81,5 +81,8 @@ void Scene::render(CameraFree& camera) {
 	for (auto& entity : this->m_entities) {
 		entity.draw(camera);
 	}
+
+	// Draw the Unlit Point Light Markers
+	this->m_lightManager.drawUnlitMarkers(camera);
 }
 

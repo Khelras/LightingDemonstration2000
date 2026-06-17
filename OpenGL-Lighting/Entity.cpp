@@ -31,7 +31,7 @@ void Entity::draw(CameraFree& camera) const {
 	glm::mat4 view = camera.getCameraView();
 	glm::mat4 projection = camera.getCameraPerspec();
 
-	// Send the MVP Matrix
+	// Send the MVP Matrices
 	this->m_material->getShader()->setMat4("matModel", model);
 	this->m_material->getShader()->setMat4("matView", view);
 	this->m_material->getShader()->setMat4("matProjection", projection);

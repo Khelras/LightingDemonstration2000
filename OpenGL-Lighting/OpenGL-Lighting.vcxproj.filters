@@ -141,5 +141,11 @@
     <None Include="Resources\Shaders\BlinnPhong.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\Shaders\UnlitColor.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\Shaders\UnlitColor.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

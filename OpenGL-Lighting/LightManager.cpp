@@ -16,12 +16,19 @@
 #include "InputHandler.h"
 
 void LightManager::initialise() {
-    // -- Load Light -- //
+    this->m_unlitMarkerShader = std::make_shared<Shader>("Resources/Shaders/UnlitColor.vert", "Resources/Shaders/UnlitColor.frag");
+    this->m_unlitMarkerMesh = std::make_shared<Mesh>("Resources/Models/Sphere_HighPoly.obj");
+
+    // -- Red Point Light -- //
     // Red Point Light
     this->m_pointLights[0].position = glm::vec3(3.0f, 2.0f, 0.0f);
     this->m_pointLights[0].color = glm::vec3(1.0f, 0.3f, 0.3f); // Red
     this->m_pointLights[0].attenuationLinear = 0.09f;
     this->m_pointLights[0].attenuationExponent = 0.032f;
+
+    // Red Unlit Marker
+    
+    // -- //
 
     // Blue Point Light
     this->m_pointLights[1].position = glm::vec3(-3.0f, 2.0f, 2.0f);
@@ -35,7 +42,6 @@ void LightManager::initialise() {
     // Directional Light
     this->m_dirLight.direction = glm::vec3(-0.5f, -1.0f, -0.5f);
     this->m_dirLight.color = glm::vec3(1.0f, 0.95f, 0.8f); // Warm White (Similar to the Sun)
-    // -- //
 }
 
 void LightManager::sendToShader(Shader* shader) {
@@ -86,6 +92,30 @@ void LightManager::sendToShader(Shader* shader) {
     shader->setFloat("spotLight.innerCutoffAngle", this->m_spotLight.innerCutoff);
     shader->setFloat("spotLight.outerCutoffAngle", this->m_spotLight.outerCutoff);
     // -- //
+}
+
+void LightManager::drawUnlitMarkers(CameraFree& camera) {
+    // Bind to the Unlit Marker Shader
+    this->m_unlitMarkerShader->use();
+
+    // Loop through all the Point Lights
+    for (int i = 0; i < this->m_pointLightCount; i++) {
+        // Create a Model Matrix for the Marker
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, this->m_pointLights[i].position); // Translation based on the Position of the Point Light
+        model = glm::scale(model, glm::vec3(1.0f)); // Scale
+
+        // Send the MVP Matrices
+        this->m_unlitMarkerShader->setMat4("matModel", model);
+        this->m_unlitMarkerShader->setMat4("matView", camera.getCameraView());
+        this->m_unlitMarkerShader->setMat4("matProjection", camera.getCameraPerspec());
+
+        // Match the Color with the Color of the Point Light
+        this->m_unlitMarkerShader->setVec3("objectColor", this->m_pointLights[i].color);
+
+        // Draw the Unlit Marker Mesh
+        this->m_unlitMarkerMesh->draw();
+    }
 }
 
 void LightManager::handleInputs() {

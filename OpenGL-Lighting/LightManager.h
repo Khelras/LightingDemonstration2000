@@ -17,6 +17,8 @@
 #include <string>
 
 #include "Shader.h"
+#include "Mesh.h"
+#include "CameraFree.h"
 
 /// <summary>
 ///     Point Light Struct.
@@ -30,8 +32,8 @@ struct PointLight {
     
     // -- Attenuation -- //
     float attenuationConst = 1.0f;
-    float attenuationLinear = 0.09f;
-    float attenuationExponent = 0.032f;
+    float attenuationLinear = 0.045f;
+    float attenuationExponent = 0.0075f;
     // -- //
 };
 
@@ -78,6 +80,10 @@ private:
     static const int MAX_POINT_LIGHTS = 4;
     PointLight m_pointLights[MAX_POINT_LIGHTS];
     int m_pointLightCount = 0;
+
+    // Unlit Point Light Markers
+    std::shared_ptr<Shader> m_unlitMarkerShader;
+    std::shared_ptr<Mesh> m_unlitMarkerMesh;
     // -- //
 
     // -- Direction and Spot Light -- //
@@ -118,6 +124,14 @@ public:
     /// </summary>
     /// <param name="shader">Pointer to the shader to send all the lights to.</param>
     void sendToShader(Shader* shader);
+
+    /// <summary>
+    ///     Draw all the unlit markers.
+    ///     IMPORTANT: This uses a different shader program.
+    /// </summary>
+    /// 
+    /// <param name="camera">Reference to the Camera.</param>
+    void drawUnlitMarkers(CameraFree& camera);
 
     /// <summary>
     ///     Handles the inputs for toggling each lights.

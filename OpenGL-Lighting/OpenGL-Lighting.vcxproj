@@ -190,6 +190,8 @@
   <ItemGroup>
     <None Include="Resources\Shaders\BlinnPhong.frag" />
     <None Include="Resources\Shaders\BlinnPhong.vert" />
+    <None Include="Resources\Shaders\UnlitColor.frag" />
+    <None Include="Resources\Shaders\UnlitColor.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
