@@ -12,7 +12,7 @@
 
 #include "Entity.h"
 
-Entity::Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material) : m_mesh(mesh), m_material(material) {
+Entity::Entity(std::shared_ptr<MeshInstanced> mesh, std::shared_ptr<Material> material) : m_mesh(mesh), m_material(material) {
 	// Default Transform Properties
 	this->m_position = glm::vec3(0.0f);
 	this->m_rotation = glm::vec3(0.0f);

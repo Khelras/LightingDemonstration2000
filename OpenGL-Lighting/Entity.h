@@ -12,14 +12,14 @@
 
 #pragma once
 
-#include "Mesh.h"
+#include "MeshInstanced.h"
 #include "Material.h"
 #include "CameraFree.h"
 
 class Entity {
 private:
 	// -- Entity Rendering Properties -- //
-	std::shared_ptr<Mesh> m_mesh;
+	std::shared_ptr<MeshInstanced> m_mesh;
 	std::shared_ptr<Material> m_material;
 	// -- //
 
@@ -40,7 +40,7 @@ public:
 	/// 
 	/// <param name="mesh">Shared pointer to the mesh.</param>
 	/// <param name="material">Shared pointer to the material.</param>
-	Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material);
+	Entity(std::shared_ptr<MeshInstanced> mesh, std::shared_ptr<Material> material);
 
 	/// <summary>
 	///		Destructor.

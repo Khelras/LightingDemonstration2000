@@ -95,6 +95,9 @@
     <ClCompile Include="LightManager.cpp">
       <Filter>Source Files\Graphics\Lighting</Filter>
     </ClCompile>
+    <ClCompile Include="MeshInstanced.cpp">
+      <Filter>Source Files\Graphics\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -132,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="LightManager.h">
       <Filter>Source Files\Graphics\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshInstanced.h">
+      <Filter>Source Files\Graphics\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

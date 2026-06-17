@@ -26,7 +26,7 @@ private:
 	// -- Scene Properties -- //
 	std::shared_ptr<Shader> m_shader;
 	std::shared_ptr<Texture2D> m_texture;
-	std::shared_ptr<Mesh> m_mesh;
+	std::shared_ptr<MeshInstanced> m_mesh;
 	std::shared_ptr<Material> m_material;
 
 	LightManager m_lightManager;

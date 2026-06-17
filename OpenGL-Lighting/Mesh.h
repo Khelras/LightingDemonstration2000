@@ -102,7 +102,7 @@ public:
 	/// <summary>
 	///		Destructor.
 	/// </summary>
-	~Mesh();
+	virtual ~Mesh();
 
 	//==================================================
 	// PRIMARY MESH METHODS
@@ -113,11 +113,11 @@ public:
 	/// </summary>
 	/// 
 	/// <param name="deltaTime">Delta Time as a float.</param>
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 
 	/// <summary>
 	///		Renders the Mesh into the world.
 	/// </summary>
-	void draw();
+	virtual void draw();
 };
 
