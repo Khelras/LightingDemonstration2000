@@ -33,8 +33,7 @@ void LightManager::initialise() {
     // -- //
 
     // Directional Light
-    this->m_dirLight.direction = glm::vec3(-0.5f, -1.0f, -0.5f);
-    this->m_dirLight.color = glm::vec3(1.0f, 0.95f, 0.8f); // Warm White (Similar to the Sun)
+    this->m_dirLight.color = glm::vec3(1.0f, 0.95f, 0.85f); // Warm White
 }
 
 void LightManager::sendToShader(Shader* shader) {

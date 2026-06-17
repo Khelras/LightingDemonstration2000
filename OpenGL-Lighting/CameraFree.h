@@ -19,9 +19,12 @@
 /// </summary>
 class CameraFree : public Camera {
 private:
-	// -- Free Camera Properties -- //
 	static const int MIN_MOVEMENT_SPEED = 7;
 	static const int MAX_MOVEMENT_SPEED = 15;
+	static const int MIN_FOV = 10;
+	static const int MAX_FOV = 100;
+
+	// -- Free Camera Properties -- //
 	float m_movementSpeed;
 	float m_mouseSensitivity;
 	float m_yaw;

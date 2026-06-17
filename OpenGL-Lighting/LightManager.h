@@ -31,9 +31,10 @@ struct PointLight {
     // -- //
     
     // -- Attenuation -- //
+    // 200 Range
     float attenuationConst = 1.0f;
-    float attenuationLinear = 0.045f;
-    float attenuationExponent = 0.0075f;
+    float attenuationLinear = 0.022f;
+    float attenuationExponent = 0.0019f;
     // -- //
 };
 
@@ -42,9 +43,9 @@ struct PointLight {
 /// </summary>
 struct DirectionalLight {
     // -- Light Properties -- //
-    glm::vec3 direction = glm::vec3(-0.2f, -1.0f, -0.3f);
+    glm::vec3 direction = glm::vec3(-1.0f, -1.0f, 0.0f);
     glm::vec3 color = glm::vec3(1.0f);
-    float specularStrength = 1.0f;
+    float specularStrength = 0.5f;
     // -- //
 };
 
@@ -54,7 +55,7 @@ struct DirectionalLight {
 struct SpotLight {
     // -- Light Properties -- //
     glm::vec3 position = glm::vec3(0.0f);
-    glm::vec3 direction = glm::vec3(0.0f, -1.0f, 0.0f);
+    glm::vec3 direction = glm::vec3(0.0f, 0.0f, -1.0f);
     glm::vec3 color = glm::vec3(1.0f);
     float specularStrength = 1.0f;
     // -- //
