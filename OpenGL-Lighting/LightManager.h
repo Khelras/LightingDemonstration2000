@@ -69,6 +69,9 @@ struct SpotLight {
 ///     Light Manager class that manages any and all forms of lighting present in the world.
 /// </summary>
 class LightManager {
+public:
+    static const int MAX_POINT_LIGHTS = 4;
+
 private:
     // -- Light Toggle Flags -- //
     bool m_pointLightsEnabled = true;
@@ -77,7 +80,6 @@ private:
     // -- //
 
     // -- Point Lights -- //
-    static const int MAX_POINT_LIGHTS = 4;
     PointLight m_pointLights[MAX_POINT_LIGHTS];
     int m_pointLightCount = 0;
 

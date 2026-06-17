@@ -29,6 +29,7 @@ struct Vertex {
 	// -- Vertex Properties -- //
 	glm::vec3 position;
 	glm::vec2 texCoord;
+	glm::vec3 normal;
 	// -- //
 
 	//==================================================
@@ -40,7 +41,8 @@ struct Vertex {
 	/// </summary>
 	Vertex() {
 		this->position = glm::vec3(0.0f);
-		this->texCoord = glm::vec3(0.0f);
+		this->texCoord = glm::vec2(0.0f);
+		this->normal = glm::vec3(0.0f);
 	};
 
 	/// <summary>
@@ -49,9 +51,11 @@ struct Vertex {
 	/// 
 	/// <param name="position">3D position vector.</param>
 	/// <param name="texCoord">2D texture coordinate vector.</param>
-	Vertex(glm::vec3 position, glm::vec2 texCoord) {
+	/// <param name="normal">3D normal vector.</param>
+	Vertex(glm::vec3 position, glm::vec2 texCoord, glm::vec3 normal) {
 		this->position = position;
 		this->texCoord = texCoord;
+		this->normal = normal;
 	};
 };
 

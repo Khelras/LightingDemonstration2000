@@ -18,7 +18,6 @@ out vec3 fragWorldPosition;
 // Shader Functionality
 void main() {
 	gl_Position = matProjection * matView * matModel * vec4(position, 1.0f);
-	fragTexCoords = texCoords;
 
 	fragTexCoords = texCoords;
 	fragNormal = mat3(transpose(inverse(matModel))) * normal;

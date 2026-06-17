@@ -32,7 +32,8 @@ void Scene::initialise() {
 	this->m_texture->loadFromFile("Resources/Textures/Dungeons_Texture_01.png");
 
 	// Mesh
-	this->m_mesh = std::make_shared<Mesh>("Resources/Models/SM_Env_Statue_01.obj");
+	//this->m_mesh = std::make_shared<Mesh>("Resources/Models/SM_Env_Statue_01.obj");
+	this->m_mesh = std::make_shared<Mesh>("Resources/Models/SM_Env_Tree_Dandelion_03.obj");
 
 	// Material
 	this->m_material = std::make_shared<Material>(this->m_shader, this->m_texture);

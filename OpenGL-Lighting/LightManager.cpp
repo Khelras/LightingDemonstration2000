@@ -19,25 +19,18 @@ void LightManager::initialise() {
     this->m_unlitMarkerShader = std::make_shared<Shader>("Resources/Shaders/UnlitColor.vert", "Resources/Shaders/UnlitColor.frag");
     this->m_unlitMarkerMesh = std::make_shared<Mesh>("Resources/Models/Sphere_HighPoly.obj");
 
-    // -- Red Point Light -- //
+    // -- Point Light -- //
     // Red Point Light
     this->m_pointLights[0].position = glm::vec3(3.0f, 2.0f, 0.0f);
-    this->m_pointLights[0].color = glm::vec3(1.0f, 0.3f, 0.3f); // Red
-    this->m_pointLights[0].attenuationLinear = 0.09f;
-    this->m_pointLights[0].attenuationExponent = 0.032f;
-
-    // Red Unlit Marker
-    
-    // -- //
+    this->m_pointLights[0].color = glm::vec3(1.0f, 0.3f, 0.3f);
 
     // Blue Point Light
     this->m_pointLights[1].position = glm::vec3(-3.0f, 2.0f, 2.0f);
-    this->m_pointLights[1].color = glm::vec3(0.3f, 0.5f, 1.0f); // Blue
-    this->m_pointLights[1].attenuationLinear = 0.14f;
-    this->m_pointLights[1].attenuationExponent = 0.07f;
+    this->m_pointLights[1].color = glm::vec3(0.3f, 0.5f, 1.0f);
 
     // Point Light Count
     this->m_pointLightCount = 2;
+    // -- //
 
     // Directional Light
     this->m_dirLight.direction = glm::vec3(-0.5f, -1.0f, -0.5f);

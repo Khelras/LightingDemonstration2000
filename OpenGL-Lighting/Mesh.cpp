@@ -77,6 +77,15 @@ Mesh::Mesh(const std::string& filePath) : Mesh() {
 					};
 				}
 
+				// Vertex Normal
+				if (tinyObjVertex.normal_index >= 0) {
+					vertex.normal = {
+						attrib.normals[3 * size_t(tinyObjVertex.normal_index) + 0],
+						attrib.normals[3 * size_t(tinyObjVertex.normal_index) + 1],
+						attrib.normals[3 * size_t(tinyObjVertex.normal_index) + 2]
+					};
+				}
+
 				this->m_vertices.push_back(vertex);
 			}
 
@@ -102,6 +111,8 @@ Mesh::Mesh(const std::string& filePath) : Mesh() {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(offsetof(Vertex, Vertex::texCoord)));
 	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(offsetof(Vertex, Vertex::normal)));
+	glEnableVertexAttribArray(2);
 	
 	// Unbind the VAO
 	glBindVertexArray(0);
