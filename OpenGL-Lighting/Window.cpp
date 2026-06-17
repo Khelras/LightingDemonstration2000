@@ -52,6 +52,7 @@ bool Window::initialize(int major, int minor) {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); // Sets the OpenGL profile to compatibility mode
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major); // Sets the major version of OpenGL
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor); // Sets the minor version of OpenGL
+	glfwWindowHint(GLFW_SAMPLES, 4); // 4 sample points per pixel
 
 	// Create an GLFW controlled context window
 	this->m_window = glfwCreateWindow(this->m_windowWidth, this->m_windowHeight, "Epic OpenGL Project 2000", NULL, NULL);
@@ -83,6 +84,9 @@ bool Window::initialize(int major, int minor) {
 		glfwTerminate(); // Destroy all the remaining windows and cursors, and free any other allocated resources
 		return false; // Return false to indicate an error occurred
 	}
+
+	// Enable MSAA
+	glEnable(GL_MULTISAMPLE);
 
 	// Set the clear color of the window for when the buffer is cleared
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // RGBA values
