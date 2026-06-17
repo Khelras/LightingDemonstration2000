@@ -22,7 +22,6 @@ Window::Window(unsigned int width, unsigned int height) {
 
 	this->m_camera = std::make_unique<CameraFree>(static_cast<float>(width), static_cast<float>(height));
 	this->m_scene = std::make_unique<Scene>();
-	this->m_renderer = std::make_unique<Renderer>();
 	// -- //
 
 	// -- Time -- //
@@ -94,16 +93,20 @@ bool Window::initialize(int major, int minor) {
 	// Initialise the Input Handler
 	InputHandler::getInstance().initialise(this->m_window);
 
-	// Initialise the Scene and the Renderer
+	// Initialise the Scene
 	this->m_scene->initialise();
-	//this->m_scene->initialiseUI(static_cast<float>(this->m_windowWidth), static_cast<float>(this->m_windowHeight));
-	//this->m_scene->setPosition(glm::vec3(0.0f, -5.0f, 0.0f));
-	//this->m_scene->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
-	//this->m_scene->setScale(glm::vec3(2.0f));
-	this->m_renderer->initialise();
-	std::cout << std::endl;
+
+	// Depth Testing to Render Faces in the correct order
+	glEnable(GL_DEPTH_TEST);
+
+	// Back Face Culling to skip Invisible Faces which improves performance
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
+	
 
 	// Initialisation was a success, returning true
+	std::cout << std::endl;
 	return true;
 }
 
@@ -135,9 +138,7 @@ void Window::pollEvents() {
 	// Poll for and process events
 	glfwPollEvents();
 
-	// Handle Free Camera Movement
-	this->m_camera->handleFreeCameraMovement(this->m_deltaTime);
-
+	// -- Global Inputs -- //
 	// Reference to the Input Handler
 	InputHandler& input = InputHandler::getInstance();
 
@@ -149,6 +150,13 @@ void Window::pollEvents() {
 		// Log to Console
 		std::cout << "[Window] Shutting down..." << std::endl;
 	}
+	// -- //
+
+	// Handle Free Camera Movement
+	this->m_camera->handleFreeCameraMovement(this->m_deltaTime);
+
+	// Handle Scene-Specific Inputs
+	this->m_scene->handleInputs();
 }
 
 void Window::update() {
@@ -159,8 +167,14 @@ void Window::update() {
 }
 
 void Window::render() {
-	// Render
-	this->m_renderer->render(*this->m_scene.get(), *this->m_camera.get());
+	// Clear the back buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Render the Entities of the Scene
+	this->m_scene->render(*this->m_camera.get());
+
+	// Unbind the Program
+	glUseProgram(0);
 
 	// Swap the Front and Back Buffers
 	glfwSwapBuffers(this->m_window);

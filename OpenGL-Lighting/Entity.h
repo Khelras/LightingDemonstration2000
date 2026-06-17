@@ -19,8 +19,8 @@
 class Entity {
 private:
 	// -- Entity Rendering Properties -- //
-	std::unique_ptr<Mesh> m_mesh;
-	std::unique_ptr<Material> m_material;
+	std::shared_ptr<Mesh> m_mesh;
+	std::shared_ptr<Material> m_material;
 	// -- //
 
 	// -- Entity Transform Properties -- // 
@@ -38,16 +38,9 @@ public:
 	///		Constructor.
 	/// </summary>
 	/// 
-	/// <param name="modelPath">File path to the 3D model.</param>
-	/// <param name="vertexPath">File path to the vertex shader.</param>
-	/// <param name="fragmentPath">File path to the fragment shader.</param>
-	/// <param name="texturePath">File path to the texture.</param>
-	Entity(const std::string& modelPath, const char* vertexPath, const char* fragmentPath, const std::string& texturePath);
-
-	Entity(const Entity&) = delete;
-	Entity& operator=(const Entity&) = delete;
-	Entity(Entity&&) noexcept = default;
-	Entity& operator=(Entity&&) noexcept = default;
+	/// <param name="mesh">Shared pointer to the mesh.</param>
+	/// <param name="material">Shared pointer to the material.</param>
+	Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material);
 
 	/// <summary>
 	///		Destructor.
@@ -58,7 +51,12 @@ public:
 	// PRIMARY ENTITY METHODS
 	//==================================================
 
-	void render(CameraFree& camera) const;
+	/// <summary>
+	///		Draw the entity into the world.
+	/// </summary>
+	/// 
+	/// <param name="camera">Reference to the camera class.</param>
+	void draw(CameraFree& camera) const;
 
 	//==================================================
 	// GETTER METHODS

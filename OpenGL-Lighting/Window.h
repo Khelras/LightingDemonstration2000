@@ -11,7 +11,8 @@
  ***********************************************************************/
 
 #pragma once
-#include "Renderer.h"
+#include "CameraFree.h"
+#include "Scene.h"
 
  /// <summary>
  ///	Window class that uses GLFW to initialize and create an OpenGL window.
@@ -26,7 +27,6 @@ private:
 
 	std::unique_ptr<CameraFree> m_camera;
 	std::unique_ptr<Scene> m_scene;
-	std::unique_ptr<Renderer> m_renderer;
 	// -- //
 
 	// -- Time -- //

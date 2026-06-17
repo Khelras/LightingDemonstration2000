@@ -42,9 +42,6 @@
     <Filter Include="Source Files\Graphics\Textures">
       <UniqueIdentifier>{8b8462bd-3a67-48e7-b047-3a3dd2b26232}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics\Renderer">
-      <UniqueIdentifier>{c6641b39-f255-4851-b16f-c66444090b01}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Graphics\Shader">
       <UniqueIdentifier>{ea5f4b61-f11c-4129-86dd-4e013c59af24}</UniqueIdentifier>
     </Filter>
@@ -53,6 +50,9 @@
     </Filter>
     <Filter Include="Source Files\Scene\Entity">
       <UniqueIdentifier>{a5e95ad1-3fbd-41a6-aab1-eefc16bd9ed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Lighting">
+      <UniqueIdentifier>{6b171c45-e918-4f92-8d17-edc076dc9eda}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Graphics\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Graphics\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="ShaderLoader.cpp">
       <Filter>Source Files\Graphics\Shader</Filter>
@@ -95,6 +92,9 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Scene\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>Source Files\Graphics\Lighting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -108,9 +108,6 @@
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Source Files\Graphics\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Source Files\Graphics\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="ShaderLoader.h">
       <Filter>Source Files\Graphics\Shader</Filter>
@@ -133,12 +130,15 @@
     <ClInclude Include="Entity.h">
       <Filter>Source Files\Scene\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="LightManager.h">
+      <Filter>Source Files\Graphics\Lighting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Model.frag">
+    <None Include="Resources\Shaders\BlinnPhong.frag">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\Shaders\Model.vert">
+    <None Include="Resources\Shaders\BlinnPhong.vert">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

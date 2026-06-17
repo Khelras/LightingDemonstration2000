@@ -93,7 +93,7 @@ public:
 	/// </summary>
 	/// 
 	/// <param name="filePath">File path to a '.obj' file.</param>
-	Mesh(std::string filePath);
+	Mesh(const std::string& filePath);
 
 	/// <summary>
 	///		Destructor.

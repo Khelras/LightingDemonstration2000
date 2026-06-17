@@ -54,6 +54,15 @@ public:
 	void use();
 
 	/// <summary>
+	///		Get the program ID of the shader.
+	/// </summary>
+	///
+	/// <returns>
+	///		The program ID of the shader as a GLuint.
+	/// </returns>
+	const GLuint& getProgramID() const;
+
+	/// <summary>
 	///		Sets an integer uniform.
 	/// </summary>
 	/// 

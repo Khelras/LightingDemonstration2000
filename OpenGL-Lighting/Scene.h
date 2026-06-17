@@ -13,6 +13,7 @@
 #pragma once
 #include <vector>
 
+#include "LightManager.h"
 #include "Entity.h"
 
 /// <summary>
@@ -23,7 +24,13 @@
 class Scene {
 private:
 	// -- Scene Properties -- //
-	std::vector<std::unique_ptr<Entity>> m_entities;
+	std::shared_ptr<Shader> m_shader;
+	std::shared_ptr<Texture2D> m_texture;
+	std::shared_ptr<Mesh> m_mesh;
+	std::shared_ptr<Material> m_material;
+
+	LightManager m_lightManager;
+	std::vector<Entity> m_entities;
 	// -- //
 
 public:
@@ -65,7 +72,12 @@ public:
 	/// <returns>
 	///		List of the entities in the scene as a vector.
 	/// </returns>
-	std::vector<std::unique_ptr<Entity>>& getEntities();
+	std::vector<Entity>& getEntities();
+
+	/// <summary>
+	///		Handle any scene-specific inputs.
+	/// </summary>
+	void handleInputs();
 
 	/// <summary>
 	///		Update the Scene.

@@ -47,6 +47,10 @@ glm::vec3 Camera::getCameraPosition() const {
 	return this->m_position;
 }
 
+glm::vec3 Camera::getCameraForward() const {
+	return glm::normalize(this->m_lookDirection);
+}
+
 void Camera::setCameraPosition(glm::vec3 position) {
 	this->m_position = position;
 }

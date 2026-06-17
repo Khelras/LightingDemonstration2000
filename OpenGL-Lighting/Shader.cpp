@@ -25,6 +25,10 @@ void Shader::use() {
 	glUseProgram(this->m_programID);
 }
 
+const GLuint& Shader::getProgramID() const {
+	return this->m_programID;
+}
+
 void Shader::setInt(const std::string& name, int value) const {
 	glUniform1i(glGetUniformLocation(this->m_programID, name.c_str()), value);
 }

@@ -25,7 +25,7 @@ Mesh::Mesh() {
 	// -- //
 }
 
-Mesh::Mesh(std::string filePath) : Mesh() {
+Mesh::Mesh(const std::string& filePath) : Mesh() {
 	tinyobj::ObjReaderConfig readerConfig;
 	tinyobj::ObjReader reader;
 

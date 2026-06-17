@@ -43,7 +43,7 @@ uniform sampler2D imageTexture;
 uniform vec3 cameraPosition;
 uniform float shininess;
 
-// Ambient (applied only once, not per light)
+// Ambient
 uniform vec3 ambientColor;
 uniform float ambientStrength;
 
@@ -162,7 +162,7 @@ vec3 calculateSpotLight(vec3 norm, vec3 fragPos, vec3 reverseViewDir)
 void main()
 {
     vec3 normal = normalize(fragNormal);
-    vec3 reverseViewDir = normalize(cameraPos - fragWorldPosition); // Direction from the Fragment to Camera View
+    vec3 reverseViewDir = normalize(cameraPosition - fragWorldPosition); // Direction from the Fragment to Camera View
 
     // Ambient applied once for Global Illumination
     vec3 ambient = ambientStrength * ambientColor;
@@ -171,18 +171,18 @@ void main()
     // Add all the Point Lights
     if (pointLightsEnabled) {
         for (int i = 0; i < pointLightCount; i++) {
-            totalLight += CalculatePointLight(i, norm, FragPos, reverseViewDir);
+            totalLight += calculatePointLight(i, normal, fragWorldPosition, reverseViewDir);
         }
     }
 
     // Add the Directional Light
     if (dirLightEnabled) {
-        totalLight += CalculateDirectionalLight(norm, reverseViewDir);
+        totalLight += calculateDirectionalLight(normal, reverseViewDir);
     }
 
     // Add the Spot Light
     if (spotLightEnabled) {
-        totalLight += CalculateSpotLight(norm, FragPos, reverseViewDir);
+        totalLight += calculateSpotLight(normal, fragWorldPosition, reverseViewDir);
     }
 
     vec4 texColor = texture(imageTexture, fragTexCoords);

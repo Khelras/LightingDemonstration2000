@@ -12,10 +12,7 @@
 
 #include "Entity.h"
 
-Entity::Entity(const std::string& modelPath, const char* vertexPath, const char* fragmentPath, const std::string& texturePath) {
-	this->m_mesh = std::make_unique<Mesh>(modelPath);
-	this->m_material = std::make_unique<Material>(vertexPath, fragmentPath, texturePath);
-	 
+Entity::Entity(std::shared_ptr<Mesh> mesh, std::shared_ptr<Material> material) : m_mesh(mesh), m_material(material) {
 	// Default Transform Properties
 	this->m_position = glm::vec3(0.0f);
 	this->m_rotation = glm::vec3(0.0f);
@@ -25,7 +22,7 @@ Entity::Entity(const std::string& modelPath, const char* vertexPath, const char*
 Entity::~Entity() {
 }
 
-void Entity::render(CameraFree& camera) const {
+void Entity::draw(CameraFree& camera) const {
 	// Apply the Material of the Entity
 	this->m_material->apply();
 	
@@ -33,13 +30,11 @@ void Entity::render(CameraFree& camera) const {
 	glm::mat4 model = this->getModelMatrix();
 	glm::mat4 view = camera.getCameraView();
 	glm::mat4 projection = camera.getCameraPerspec();
-	glm::vec3 cameraPosition = camera.getCameraPosition();
 
-	// Send the MVP Matrices and the Camera Position to the Shader Program via Uniforms
+	// Send the MVP Matrix
 	this->m_material->getShader()->setMat4("matModel", model);
 	this->m_material->getShader()->setMat4("matView", view);
 	this->m_material->getShader()->setMat4("matProjection", projection);
-	this->m_material->getShader()->setVec3("cameraPosition", cameraPosition);
 
 	// Draw the Mesh Model
 	this->m_mesh->draw();

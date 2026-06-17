@@ -93,6 +93,15 @@ public:
 	/// </returns>
 	glm::vec3 getCameraPosition() const;
 
+	/// <summary>
+	///		Get the forward vector of the camera.
+	/// </summary>
+	/// 
+	/// <returns>
+	///		3D forward vector (normalised).
+	/// </returns>
+	glm::vec3 getCameraForward() const;
+
 	//==================================================
 	// SETTER METHODS
 	//==================================================

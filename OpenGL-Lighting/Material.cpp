@@ -12,16 +12,8 @@
 
 #include "Material.h"
 
-Material::Material(const char* vertexPath, const char* fragmentPath, const std::string& texturePath) {
-	this->m_shader = std::make_unique<Shader>(vertexPath, fragmentPath);
-	this->m_texture = std::make_unique<Texture2D>();
-	if (this->m_texture->loadFromFile(texturePath) == false) {
-		// Texture 1 Failed to Load
-		std::cout << "[Scene] Failed to load texture: '" << texturePath << "'";
-		std::cout << std::endl;
-		exit(1);
-	}
-}
+Material::Material(std::shared_ptr<Shader> shader, std::shared_ptr<Texture2D> texture, float shininess, float specularStrength)
+	: m_shader(shader), m_texture(texture), m_shininess(shininess), m_specularStrength(specularStrength) {}
 
 Material::~Material() {
 }
@@ -32,14 +24,14 @@ void Material::apply() const {
 		return;
 	}
 
-	// Use the Shader
-	this->m_shader->use();
-
 	// Check if a Texture does Exist
 	if (this->m_texture != nullptr) {
 		this->m_texture->bind(GL_TEXTURE0);
-		this->m_shader->setInt("texture0", 0);
+		this->m_shader->setInt("imageTexture", 0);
 	}
+
+	// Shininess
+	this->m_shader->setFloat("shininess", this->m_shininess);
 }
 
 Shader* Material::getShader() const {

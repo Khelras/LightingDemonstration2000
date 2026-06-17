@@ -22,8 +22,11 @@
 class Material {
 private:
 	// -- Material Properties -- //
-	std::unique_ptr<Shader> m_shader;
-	std::unique_ptr<Texture2D> m_texture;
+	std::shared_ptr<Shader> m_shader;
+	std::shared_ptr<Texture2D> m_texture;
+
+	float m_shininess;
+	float m_specularStrength;
 	// -- //
 
 public:
@@ -35,10 +38,11 @@ public:
 	///		Constructor.
 	/// </summary>
 	/// 
-	/// <param name="vertexPath">File path to the vertex shader.</param>
-	/// <param name="fragmentPath">File path to the fragment shader.</param>
-	/// <param name="texturePath">File path to the texture.</param>
-	Material(const char* vertexPath, const char* fragmentPath, const std::string& texturePath);
+	/// <param name="shader">Shared pointer to the Shader.</param>
+	/// <param name="texture">Shared pointer to the Texture.</param>
+	/// <param name="shininess">Determines the size and sharpness of the light; Default to 32.0f.</param>
+	/// <param name="specularStrength">Determines the intensity or brightness of the light reflection; Default to 0.8f.</param>
+	Material(std::shared_ptr<Shader> shader, std::shared_ptr<Texture2D> texture, float shininess = 32.0f, float specularStrength = 0.8f);
 
 	/// <summary>
 	///		Destructor.
