@@ -21,7 +21,7 @@ Scene::~Scene() {
 }
 
 void Scene::initialise() {
-	// -- Test Entity -- // 
+	// -- Load Entities -- // 
 	this->m_entities.push_back(std::make_unique<Entity>(
 		"Resources/Models/SM_Env_Statue_01.obj",
 		"Resources/Shaders/Model.vert",
